@@ -1,4 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.wsirius.core.autoconfigure.SunnyAutoConfiguration,\
-com.wsirius.core.autoconfigure.MyBatisAutoConfiguration,\
-com.wsirius.core.redis.SunnyRedisAutoConfiguration
