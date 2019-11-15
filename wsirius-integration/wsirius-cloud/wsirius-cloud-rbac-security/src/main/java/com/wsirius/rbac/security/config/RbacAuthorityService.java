@@ -9,7 +9,7 @@ import com.wsirius.rbac.security.common.Consts;
 import com.wsirius.rbac.security.exception.SecurityException;
 import com.wsirius.rbac.security.entity.Permission;
 import com.wsirius.rbac.security.entity.Role;
-import com.wsirius.rbac.security.repository.PermissionDao;
+import com.wsirius.rbac.security.repository.PermissionService;
 import com.wsirius.rbac.security.repository.RoleService;
 import com.wsirius.rbac.security.vo.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +48,7 @@ public class RbacAuthorityService {
     private RoleService roleService;
 
     @Autowired
-    private PermissionDao permissionDao;
+    private PermissionService permissionService;
 
     @Autowired
     private RequestMappingHandlerMapping mapping;
@@ -67,7 +67,8 @@ public class RbacAuthorityService {
             List<Long> roleIds = roles.stream()
                     .map(Role::getId)
                     .collect(Collectors.toList());
-            List<Permission> permissions = permissionDao.selectByRoleIdList(roleIds);
+            //List<Permission> permissions = permissionDao.selectByRoleIdList(roleIds);
+            List<Permission> permissions = permissionService.selectByRoleIdList(roleIds);
 
             //获取资源，前后端分离，所以过滤页面权限，只保留按钮权限
             List<Permission> btnPerms = permissions.stream()

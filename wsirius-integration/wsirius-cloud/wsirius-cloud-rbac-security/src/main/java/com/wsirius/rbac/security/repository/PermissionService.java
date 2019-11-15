@@ -25,13 +25,5 @@ import java.util.Optional;
  * @modified: yangkai.shen
  */
 public interface PermissionService extends Service<Permission> {
-    /**
-     * 通过用户名或手机号查询用户
-     *
-     * @param username 用户名或手机
-     * @return User
-     */
-    //User getUserByUsername(String username);
-    //@Query(value = "SELECT DISTINCT sec_permission.* FROM sec_permission,sec_role,sec_role_permission WHERE sec_role.id = sec_role_permission.role_id AND sec_permission.id = sec_role_permission.permission_id AND sec_role.id IN (:ids)", nativeQuery = true)
-    List<Permission> selectByRoleIdList(@Param("ids") List<Long> ids);
+    List<Permission> selectByRoleIdList(List<Long> ids);
 }

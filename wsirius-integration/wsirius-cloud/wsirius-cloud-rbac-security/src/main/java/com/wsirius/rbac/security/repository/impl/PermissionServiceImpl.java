@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 //import com.wsirius.core.exception.CommonException;
 import com.wsirius.rbac.security.entity.Permission;
 //import com.wsirius.rbac.security.mapper.PermissionMapper;
+import com.wsirius.rbac.security.mapper.PermissionMapper;
 import com.wsirius.rbac.security.repository.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -31,14 +32,10 @@ import java.util.Optional;
 public class PermissionServiceImpl extends BaseService<Permission> implements PermissionService {
 
     @Autowired(required = false)
-    //private PermissionMapper permissionMapper;
+    private PermissionMapper permissionMapper;
 
-    //@Override
-    //public User getUserByUsername(String username) {
-    //    return permissionMapper.selectByUsername(username);
-    //}
-    public List<Permission> selectByRoleIdList(@Param("ids") List<Long> ids){
-        //return permissionMapper.selectByRoleIdList(ids);
-        return null;
+    public List<Permission> selectByRoleIdList(List<Long> ids){
+        return permissionMapper.selectByRoleIdList(ids);
     }
+
 }

@@ -3,8 +3,8 @@ package com.wsirius.rbac.security.service;
 import com.wsirius.rbac.security.entity.Permission;
 import com.wsirius.rbac.security.entity.Role;
 import com.wsirius.rbac.security.entity.User;
-import com.wsirius.rbac.security.repository.PermissionDao;
 //import com.wsirius.rbac.security.repository.UserDao;
+import com.wsirius.rbac.security.repository.PermissionService;
 import com.wsirius.rbac.security.repository.RoleService;
 import com.wsirius.rbac.security.repository.UserService;
 import com.wsirius.rbac.security.vo.UserPrincipal;
@@ -38,8 +38,11 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private RoleService roleService;
 
+//    @Autowired
+//    private PermissionDao permissionDao;
+
     @Autowired
-    private PermissionDao permissionDao;
+    private PermissionService permissionService;
 
     @Override
     public UserDetails loadUserByUsername(String usernameOrEmailOrPhone) throws UsernameNotFoundException {
@@ -51,7 +54,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         List<Long> roleIds = roles.stream()
                 .map(Role::getId)
                 .collect(Collectors.toList());
-        List<Permission> permissions = permissionDao.selectByRoleIdList(roleIds);
+        //List<Permission> permissions = permissionDao.selectByRoleIdList(roleIds);
+        List<Permission> permissions = permissionService.selectByRoleIdList(roleIds);
         return UserPrincipal.create(user, roles, permissions);
     }
 }
