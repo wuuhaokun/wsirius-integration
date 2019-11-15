@@ -1,0 +1,22 @@
+server:
+  port: 8200
+
+spring:
+  application:
+    name: wsirius-admin
+  datasource:
+    url: jdbc:mysql://db.sunny.com:3306/spring-boot-demo?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 1234567890
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://dev.lyyzoo.com:8000/eureka/}
+  instance:
+    # 使用 IP 注册服务
+    prefer-ip-address: true
+    # 服务续约任务的调用间隔时间
+    lease-renewal-interval-in-seconds: 30
+    # 服务失效的时间
+    lease-expiration-duration-in-seconds: 90
