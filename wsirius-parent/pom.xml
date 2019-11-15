@@ -52,7 +52,7 @@
         <spring.social.version>2.0.0.M4</spring.social.version>
         <spring.session.version>2.1.0.RELEASE</spring.session.version>
         <spring-cloud.starter-oauth2.version>2.0.1.RELEASE</spring-cloud.starter-oauth2.version>
-        <spring-security-oauth2.version>2.3.4.RELEASE</spring-security-oauth2.version>
+        <spring-security-oauth2.version>2.3.6.RELEASE</spring-security-oauth2.version>
 
         <janino.version>2.7.8</janino.version>
         <slf4j.version>1.7.25</slf4j.version>
