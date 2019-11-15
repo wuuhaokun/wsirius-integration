@@ -33,7 +33,7 @@
         <commons.logging.version>1.2</commons.logging.version>
         <commons.fileupload.version>1.3.1</commons.fileupload.version>
         <guava.version>25.0-jre</guava.version>
-        <squareup.retrofit2>2.3.0</squareup.retrofit2>
+        <squareup.retrofit2>2.6.2</squareup.retrofit2>
         <jackson-dataformat>2.9.0</jackson-dataformat>
         <aspectjrt.version>1.8.10</aspectjrt.version>
         <aspectjweaver.version>1.8.13</aspectjweaver.version>
