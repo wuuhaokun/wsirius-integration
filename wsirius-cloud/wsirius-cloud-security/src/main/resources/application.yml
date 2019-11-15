@@ -1,0 +1,51 @@
+server:
+  port: 8089
+  servlet:
+    session:
+      timeout: 60m
+      cookie:
+        name: JSESSIONID
+
+spring:
+  application:
+    name: wsirius-cloud-security
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/sunny?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    #url: jdbc:mysql://127.0.0.1:3306/spring-boot-demo?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT%2B8
+    username: root
+    password: 1234567890
+    #password: root
+  session:
+#    store-type: redis
+     store-type:none
+  redis:
+    host: localhost
+    database: 5
+#   spring.redis.database的配置通常使用0即可，Redis在配置的时候可以设置数据库数量，默认为16，可以理解为数据库的schema
+    port: 6379
+  mvc:
+    static-path-pattern: /static/**
+  main:
+    allow-bean-definition-overriding: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://127.0.0.1:8000/eureka/}
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.int}
+
+sunny:
+  social:
+    filterProcessesUrl: /openid
+    qq:
+      app-id: 101514978
+      app-secret: 3fb5da91d5e0fc41b218e7cbb5356738
+
+logging:
+  level:
+    org.apache.ibatis: debug
+    com.wsirius: debug
+    org.springframework.security: debug
+    org.springframework.social: debug

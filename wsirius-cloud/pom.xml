@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.wsirius</groupId>
+        <artifactId>wsirius-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+<!--        <relativePath>../wsirius-parent/pom.xml</relativePath>-->
+    </parent>
+    <groupId>com.wsirius.cloud</groupId>
+    <artifactId>wsirius-cloud</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>wsirius-cloud-register</module>
+        <module>wsirius-cloud-security</module>
+        <module>wsirius-cloud-rbac-security</module>
+    </modules>
+
+</project>

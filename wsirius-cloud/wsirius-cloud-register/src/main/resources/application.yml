@@ -1,0 +1,23 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: wsirius-cloud-register
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 30
+  client:
+    # 是否向注册中心注册自己
+    register-with-eureka: false
+    # 是否检索服务
+    fetch-registry: false
+    # 服务清单缓存的更新时间
+    registry-fetch-interval-seconds: 30
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    # 关闭保护机制
+    enable-self-preservation: false
+
