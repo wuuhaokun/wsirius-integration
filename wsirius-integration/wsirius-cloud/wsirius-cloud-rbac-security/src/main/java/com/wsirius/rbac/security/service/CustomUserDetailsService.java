@@ -4,8 +4,8 @@ import com.wsirius.rbac.security.entity.Permission;
 import com.wsirius.rbac.security.entity.Role;
 import com.wsirius.rbac.security.entity.User;
 import com.wsirius.rbac.security.repository.PermissionDao;
-import com.wsirius.rbac.security.repository.RoleDao;
 //import com.wsirius.rbac.security.repository.UserDao;
+import com.wsirius.rbac.security.repository.RoleService;
 import com.wsirius.rbac.security.repository.UserService;
 import com.wsirius.rbac.security.vo.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     private UserService userService;
 
     @Autowired
-    private RoleDao roleDao;
+    private RoleService roleService;
 
     @Autowired
     private PermissionDao permissionDao;
@@ -46,7 +46,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = userService.getUserByUsername(usernameOrEmailOrPhone);
         //Kun 這里要修正
                 //.orElseThrow(() -> new UsernameNotFoundException("未找到用户信息 : " + usernameOrEmailOrPhone));
-        List<Role> roles = roleDao.selectByUserId(user.getId());
+        //List<Role> roles = roleDao.selectByUserId(user.getId());
+        List<Role> roles = roleService.selectByUserId(user.getId());
         List<Long> roleIds = roles.stream()
                 .map(Role::getId)
                 .collect(Collectors.toList());

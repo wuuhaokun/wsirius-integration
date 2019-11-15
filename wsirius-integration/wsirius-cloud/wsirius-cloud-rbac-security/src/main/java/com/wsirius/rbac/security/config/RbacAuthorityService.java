@@ -10,7 +10,7 @@ import com.wsirius.rbac.security.exception.SecurityException;
 import com.wsirius.rbac.security.entity.Permission;
 import com.wsirius.rbac.security.entity.Role;
 import com.wsirius.rbac.security.repository.PermissionDao;
-import com.wsirius.rbac.security.repository.RoleDao;
+import com.wsirius.rbac.security.repository.RoleService;
 import com.wsirius.rbac.security.vo.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -45,7 +45,7 @@ import java.util.stream.Collectors;
 @Component
 public class RbacAuthorityService {
     @Autowired
-    private RoleDao roleDao;
+    private RoleService roleService;
 
     @Autowired
     private PermissionDao permissionDao;
@@ -63,7 +63,7 @@ public class RbacAuthorityService {
             UserPrincipal principal = (UserPrincipal) userInfo;
             Long userId = principal.getId();
 
-            List<Role> roles = roleDao.selectByUserId(userId);
+            List<Role> roles = roleService.selectByUserId(userId);
             List<Long> roleIds = roles.stream()
                     .map(Role::getId)
                     .collect(Collectors.toList());
