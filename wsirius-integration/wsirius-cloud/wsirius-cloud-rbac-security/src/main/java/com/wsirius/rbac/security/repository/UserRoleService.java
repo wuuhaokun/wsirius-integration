@@ -1,22 +1,27 @@
 package com.wsirius.rbac.security.repository;
 
-import com.wsirius.rbac.security.entity.RolePermission;
-import com.wsirius.rbac.security.entity.unionkey.RolePermissionKey;
+import com.wsirius.core.base.Service;
+import com.wsirius.rbac.security.entity.User;
+import com.wsirius.rbac.security.entity.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
+import java.util.List;
+import java.util.Optional;
+
 /**
  * <p>
- * 角色-权限 DAO
+ * 用户 DAO
  * </p>
  *
  * @package: com.xkcoding.rbac.security.repository
- * @description: 角色-权限 DAO
+ * @description: 用户 DAO
  * @author: yangkai.shen
- * @date: Created in 2018-12-10 13:45
+ * @date: Created in 2018-12-07 16:18
  * @copyright: Copyright (c) 2018
  * @version: V1.0
  * @modified: yangkai.shen
  */
-public interface RolePermissionDao extends JpaRepository<RolePermission, RolePermissionKey>, JpaSpecificationExecutor<RolePermission> {
+public interface UserRoleService extends Service<UserRole> {
+
 }
