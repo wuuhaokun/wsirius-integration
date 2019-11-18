@@ -48,10 +48,10 @@ VALUES (1072806379330342912, '测试页面-添加', '/**/test', 2, 'btn:test:ins
 INSERT INTO `sec_permission`
 VALUES (1072806379342925824, '监控在线用户页面', '/monitor', 1, 'page:monitor:online', NULL, 2, 0);
 INSERT INTO `sec_permission`
-VALUES (1072806379363897344, '在线用户页面-查询', '/**/api/monitor/online/user', 2, 'btn:monitor:online:query', 'GET', 1,
+VALUES (1072806379363897344, '在线用户页面-查询', '/**/api/v1/monitor/online/user', 2, 'btn:monitor:online:query', 'GET', 1,
         1072806379342925824);
 INSERT INTO `sec_permission`
-VALUES (1072806379384868864, '在线用户页面-踢出', '/**/api/monitor/online/user/kickout', 2, 'btn:monitor:online:kickout',
+VALUES (1072806379384868864, '在线用户页面-踢出', '/**/api/v1/monitor/online/user/kickout', 2, 'btn:monitor:online:kickout',
         'DELETE', 2, 1072806379342925824);
 COMMIT;
 

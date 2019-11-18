@@ -34,7 +34,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("/api/monitor")
+@RequestMapping("/api/v1/monitor")
 public class MonitorController {
     @Autowired
     private MonitorService monitorService;
