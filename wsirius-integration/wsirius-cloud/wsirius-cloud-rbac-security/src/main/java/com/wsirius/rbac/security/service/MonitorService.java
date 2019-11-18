@@ -2,13 +2,14 @@ package com.wsirius.rbac.security.service;
 
 import cn.hutool.core.util.StrUtil;
 import com.google.common.collect.Lists;
+import com.wsirius.core.redis.RedisHelper;
 import com.wsirius.rbac.security.common.Consts;
 import com.wsirius.rbac.security.common.PageResult;
 import com.wsirius.rbac.security.entity.User;
 import com.wsirius.rbac.security.payload.PageCondition;
 //import com.wsirius.rbac.security.repository.UserDao;
 import com.wsirius.rbac.security.repository.UserService;
-import com.wsirius.rbac.security.util.RedisUtil;
+import com.wsirius.rbac.security.util.PageUtil;
 import com.wsirius.rbac.security.util.SecurityUtil;
 import com.wsirius.rbac.security.vo.OnlineUser;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +36,9 @@ import java.util.stream.Collectors;
 @Service
 public class MonitorService {
     @Autowired
-    private RedisUtil redisUtil;
+    private RedisHelper redisHelper;
+    @Autowired
+    private PageUtil redisUtil;
 
 //    @Autowired
 //    private UserDao userDao;
@@ -59,7 +62,7 @@ public class MonitorService {
         // 根据用户名查询用户信息
         //Kun 這里要修正
         //List<User> userList = userDao.findByUsernameIn(usernameList);
-        List<User> userList = userService.selectList((User) usernameList);
+        List<User> userList = userService.findByUsernameIn(usernameList);
 
         // 封装在线用户信息
         List<OnlineUser> onlineUserList = Lists.newArrayList();
@@ -78,7 +81,7 @@ public class MonitorService {
         List<String> redisKeys = names.parallelStream()
                 .map(s -> Consts.REDIS_JWT_KEY_PREFIX + s)
                 .collect(Collectors.toList());
-        redisUtil.delete(redisKeys);
+        redisHelper.delKey(redisKeys);
 
         // 获取当前用户名
         String currentUsername = SecurityUtil.getCurrentUsername();

@@ -33,4 +33,9 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         return userMapper.selectByUsername(username);
     }
 
+    @Override
+    public List<User> findByUsernameIn(List<String> usernameList){
+        return userMapper.findByUsernameIn(usernameList);
+    }
+
 }

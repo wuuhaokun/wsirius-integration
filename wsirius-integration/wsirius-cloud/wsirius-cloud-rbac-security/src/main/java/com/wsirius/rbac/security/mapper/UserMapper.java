@@ -23,7 +23,6 @@ public interface UserMapper extends Mapper<User> {
 //     */
 
     User selectByUsername(@Param("username") String username);
+    List<User> findByUsernameIn(List<String> usernameList);
 
-    //Optional<User> findByUsernameOrEmailOrPhone(String username, String email, String phone);
-    //List<User> findByUsernameIn(List<String> usernameList);
 }

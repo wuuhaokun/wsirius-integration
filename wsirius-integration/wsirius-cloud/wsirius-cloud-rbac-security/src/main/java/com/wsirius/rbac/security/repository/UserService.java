@@ -2,6 +2,9 @@ package com.wsirius.rbac.security.repository;
 
 import com.wsirius.core.base.Service;
 import com.wsirius.rbac.security.entity.User;
+
+import java.util.List;
+
 /**
  * <p>
  * 用户 DAO
@@ -23,4 +26,6 @@ public interface UserService extends Service<User> {
      * @return User
      */
     User getUserByUsername(String username);
+    List<User> findByUsernameIn(List<String> usernameList);
+
 }

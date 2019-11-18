@@ -7,12 +7,34 @@
       email, birthday, sex, status, create_time, update_time
     </sql>
 
+<!--    <resultMap id="userMap" type="com.wsirius.rbac.security.entity.User">-->
+<!--        <id property="id" column="id"/>-->
+<!--        <result property="username" column="username"/>-->
+<!--        <result property="nickname" column="nickname"/>-->
+<!--        <result property="phone" column="phone"/>-->
+<!--        <result property="email" column="email"/>-->
+<!--        <result property="birthday" column="birthday"/>-->
+<!--        <result property="sex" column="sex"/>-->
+<!--        <result property="status" column="status"/>-->
+
+<!--        <result property="createTime" column="create_time"/>-->
+<!--        <result property="updateTime" column="update_time"/>-->
+<!--    </resultMap>-->
+
+
     <!-- 通过用户名查询用户 -->
     <select id="selectByUsername" parameterType="string" resultType="com.wsirius.rbac.security.entity.User">
         SELECT
         <include refid="BaseColumn"/>
         FROM sec_user
         WHERE username = #{username} OR phone = #{username}
+    </select>
+
+    <select id="findByUsernameIn" resultType="com.wsirius.rbac.security.entity.User">
+        SELECT * FROM sec_user WHERE username in
+        <foreach collection="list" open="(" close=")" separator="," item="usernameList" index="i">
+            #{usernameList}
+        </foreach>
     </select>
 
 </mapper>
