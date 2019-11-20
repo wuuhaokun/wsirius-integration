@@ -3,7 +3,7 @@ package com.wsirius.rbac.security.vo;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 import com.wsirius.rbac.security.common.Consts;
-import com.wsirius.rbac.security.entity.User;
+import com.wsirius.rbac.security.domain.entity.User;
 import lombok.Data;
 
 /**

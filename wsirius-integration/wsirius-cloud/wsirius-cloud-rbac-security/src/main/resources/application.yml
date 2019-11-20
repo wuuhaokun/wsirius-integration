@@ -70,9 +70,12 @@ custom:
       post:
         - "/api/v1/auth/login"
         - "/api/v1/auth/logout"
+        - "/api/v1/auth/register"
 
       # 需要过滤的请求，不限方法
       pattern:
         - "/test/*"
-        - "/api/v1/register/*"
+        - "/api/v1/auth/register/*"
+        - "/api/v1/vehicle/*"
+        - "/api/v1/calltaxi/*"
 #mqtt sample https://github.com/1ssqq1lxr/iot_push https://github.com/hugh-countryside/mqttServer & https://gitee.com/recallcode/iot-mqtt-server

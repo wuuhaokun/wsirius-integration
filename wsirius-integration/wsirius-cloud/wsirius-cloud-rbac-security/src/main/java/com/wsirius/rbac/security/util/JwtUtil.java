@@ -3,6 +3,7 @@ package com.wsirius.rbac.security.util;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import com.wsirius.core.base.WStatus;
+import com.wsirius.core.redis.RedisHelper;
 import com.wsirius.rbac.security.common.Consts;
 //import com.wsirius.rbac.security.common.Status;
 import com.wsirius.rbac.security.config.JwtConfig;
@@ -18,10 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -45,7 +43,7 @@ public class JwtUtil {
     private JwtConfig jwtConfig;
 
     @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    private RedisHelper redisHelper;
 
     /**
      * 创建JWT
@@ -75,8 +73,9 @@ public class JwtUtil {
 
         String jwt = builder.compact();
         // 将生成的JWT保存至Redis
-        stringRedisTemplate.opsForValue()
-                .set(Consts.REDIS_JWT_KEY_PREFIX + subject, jwt, ttl, TimeUnit.MILLISECONDS);
+        redisHelper.strSet(Consts.REDIS_JWT_KEY_PREFIX + subject, jwt, ttl, TimeUnit.MILLISECONDS);
+        //redisHelper.opsForValue()
+//                .set(Consts.REDIS_JWT_KEY_PREFIX + subject, jwt, ttl, TimeUnit.MILLISECONDS);
         return jwt;
     }
 
@@ -109,14 +108,18 @@ public class JwtUtil {
             String redisKey = Consts.REDIS_JWT_KEY_PREFIX + username;
 
             // 校验redis中的JWT是否存在
-            Long expire = stringRedisTemplate.getExpire(redisKey, TimeUnit.MILLISECONDS);
+            //Long expire = stringRedisTemplate.getExpire(redisKey, TimeUnit.MILLISECONDS);
+            Long expire = redisHelper.getKeyExpire(redisKey, TimeUnit.MILLISECONDS);
+
             if (Objects.isNull(expire) || expire <= 0) {
                 throw new SecurityException(WStatus.TOKEN_EXPIRED);
             }
 
             // 校验redis中的JWT是否与当前的一致，不一致则代表用户已注销/用户在不同设备登录，均代表JWT已过期
-            String redisToken = stringRedisTemplate.opsForValue()
-                    .get(redisKey);
+//            String redisToken = stringRedisTemplate.opsForValue()
+//                    .get(redisKey);
+            String redisToken = redisHelper.strGet(redisKey);
+
             if (!StrUtil.equals(jwt, redisToken)) {
                 throw new SecurityException(WStatus.TOKEN_OUT_OF_CTRL);
             }
@@ -148,7 +151,8 @@ public class JwtUtil {
         String jwt = getJwtFromRequest(request);
         String username = getUsernameFromJWT(jwt);
         // 从redis中清除JWT
-        stringRedisTemplate.delete(Consts.REDIS_JWT_KEY_PREFIX + username);
+        //stringRedisTemplate.delete(Consts.REDIS_JWT_KEY_PREFIX + username);
+        redisHelper.delKey(Consts.REDIS_JWT_KEY_PREFIX + username);
     }
 
     /**
@@ -173,6 +177,30 @@ public class JwtUtil {
         if (StrUtil.isNotBlank(bearerToken) && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);
         }
+        return null;
+    }
+
+    public Map<String, String> refreshJWT(String token) {
+//        Claims claims = parseJWT(token, true);
+//        // 获取签发时间
+//        Date lastTime = claims.getExpiration();
+//        // 1. 判断refreshToken是否过期
+//        if (!new Date().before(lastTime)){
+//            throw new CustomException(ResultCode.TOKEN_EXPIRED);
+//        }
+//        // 2. 在redis中删除之前的token和refreshToken
+//        String username = claims.getSubject();
+//        // redisTemplate.delete(Constant.REDIS_JWT_REFRESH_TOKEN_KEY_PREFIX + username);
+//        // redisTemplate.delete(Constant.REDIS_JWT_TOKEN_KEY_PREFIX + username);
+//        // 3. 创建新的token和refreshToken并存入redis
+//        String jwtToken = createJWT(false, false, Long.parseLong(claims.getId()), username,
+//                (List<Role>) claims.get("roles"), null, (Collection<? extends GrantedAuthority>) claims.get("authorities"));
+//        String refreshJwtToken = createJWT(true, false, Long.parseLong(claims.getId()), username,
+//                (List<Role>) claims.get("roles"), null, (Collection<? extends GrantedAuthority>) claims.get("authorities"));
+//        Map<String, String> map = new HashMap<>();
+//        map.put("token", jwtToken);
+//        map.put("refreshToken", refreshJwtToken);
+//        return map;
         return null;
     }
 

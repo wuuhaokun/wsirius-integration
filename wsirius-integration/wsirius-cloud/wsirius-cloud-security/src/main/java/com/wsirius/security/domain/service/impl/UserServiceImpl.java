@@ -22,7 +22,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 @Service
 public class UserServiceImpl extends BaseService<User> implements UserService {
 
-    @Autowired
+    @Autowired(required = false)
     private UserMapper userMapper;
     @Autowired
     private ProviderSignInUtils providerSignInUtils;

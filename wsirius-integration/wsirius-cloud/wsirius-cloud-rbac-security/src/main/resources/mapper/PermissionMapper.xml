@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wsirius.rbac.security.mapper.PermissionMapper">
+<mapper namespace="com.wsirius.rbac.security.domain.mapper.PermissionMapper">
 
-    <resultMap id="permissionMap" type="com.wsirius.rbac.security.entity.Permission">
+    <resultMap id="permissionMap" type="com.wsirius.rbac.security.domain.entity.Permission">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="url" column="url"/>
@@ -14,7 +14,7 @@
     </resultMap>
 
 
-    <select id="selectByRoleIdList" resultType="com.wsirius.rbac.security.entity.Permission">
+    <select id="selectByRoleIdList" resultType="com.wsirius.rbac.security.domain.entity.Permission">
         SELECT DISTINCT sec_permission.* FROM sec_permission,sec_role,sec_role_permission WHERE sec_role.id = sec_role_permission.role_id AND sec_permission.id = sec_role_permission.permission_id AND sec_role.id IN
         <foreach collection="list" open="(" close=")" separator="," item="ids" index="i">
             #{ids}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wsirius.rbac.security.domain.mapper.UserRoleMapper">
+
+<!--    @Results({-->
+<!--    @Result(id=true, property = "id.postId", column = "post_id"),-->
+<!--    @Result(id=true, property = "id.locationId", column = "location_id"),-->
+<!--    //OTHER PROPERTIES...-->
+<!--    })-->
+
+<!--    <resultMap id="myClassResultMap" type="UserRole">-->
+<!--        <constructor>-->
+<!--            <idArg column="ID_COL_1" javaType="java.lang.Integer"/>-->
+<!--            <idArg column="ID_COL_2" javaType="java.lang.Integer"/>-->
+<!--        </contructor>-->
+<!--        #<result property="other" column="OTHER_COL"/>-->
+<!--    </resultMap>-->
+
+<!--    <resultMap>-->
+<!--&lt;!&ndash;        <id property="enterId" column="enter_id"/>&ndash;&gt;-->
+<!--        <id property="sId" column="s_id"/>-->
+<!--    </resultMap>-->
+
+    <resultMap id="userRoleMap" type="com.wsirius.rbac.security.domain.entity.UserRole">
+        <id property="id.user_id" column="user_id"/>
+        <id property="id.role_id" column="role_id"/>
+    </resultMap>
+
+
+</mapper>

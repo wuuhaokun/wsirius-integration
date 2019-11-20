@@ -1,12 +1,11 @@
 package com.wsirius.rbac.security.service;
 
-import com.wsirius.rbac.security.entity.Permission;
-import com.wsirius.rbac.security.entity.Role;
-import com.wsirius.rbac.security.entity.User;
-//import com.wsirius.rbac.security.repository.UserDao;
-import com.wsirius.rbac.security.repository.PermissionService;
-import com.wsirius.rbac.security.repository.RoleService;
-import com.wsirius.rbac.security.repository.UserService;
+import com.wsirius.rbac.security.domain.entity.Permission;
+import com.wsirius.rbac.security.domain.entity.Role;
+import com.wsirius.rbac.security.domain.entity.User;
+import com.wsirius.rbac.security.domain.service.PermissionService;
+import com.wsirius.rbac.security.domain.service.RoleService;
+import com.wsirius.rbac.security.domain.service.UserService;
 import com.wsirius.rbac.security.vo.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
