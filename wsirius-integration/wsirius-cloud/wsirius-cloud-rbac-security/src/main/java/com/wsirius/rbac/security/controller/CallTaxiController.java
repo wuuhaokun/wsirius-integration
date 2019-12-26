@@ -1,14 +1,18 @@
 package com.wsirius.rbac.security.controller;
 
+import cn.hutool.core.lang.Snowflake;
 import com.wsirius.core.base.Result;
 import com.wsirius.core.util.Results;
 import com.wsirius.rbac.security.domain.entity.VehicleInfo;
 import com.wsirius.rbac.security.payload.CallTaxiRequest;
 import com.wsirius.rbac.security.domain.service.VehicleInfoService;
-import com.wsirius.rbac.security.util.DispatchCarUtil;
-import com.wsirius.rbac.security.util.GeoUtils;
-import com.wsirius.rbac.security.util.JwtUtil;
+import com.wsirius.rbac.security.util.*;
 import lombok.extern.slf4j.Slf4j;
+import org.fusesource.hawtbuf.Buffer;
+import org.fusesource.hawtbuf.UTF8Buffer;
+import org.fusesource.mqtt.client.*;
+import org.fusesource.mqtt.codec.MQTTFrame;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +23,8 @@ import javax.validation.Valid;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import static org.fusesource.hawtbuf.Buffer.utf8;
 
 /**
  * <p>
@@ -65,14 +71,10 @@ import java.util.List;
 public class CallTaxiController {
 
     @Autowired
-    private VehicleInfoService vehicleInfoService;
+    private RabbitTemplate rabbitTemplate;
 
     @Autowired
-    private JwtUtil jwtUtil;
-//
-//    @Autowired
-//    private RabcUserUtil rabcUserUtil;
-
+    private VehicleInfoService vehicleInfoService;
 
     @Autowired
     private GeoUtils geoUtils;
@@ -80,15 +82,19 @@ public class CallTaxiController {
     @Autowired
     private DispatchCarUtil dispatchCarUtil;
 
+    @Autowired
+    private Snowflake snowflake;
+
     private
     double distance = 0;
     /**
      * 登录
      */
 
+    //MQTT mqtt = new MQTT();
 
     @PostMapping("/usercall")
-    public Result call(@Valid @RequestBody CallTaxiRequest callTaxiRequest) {
+    public Result call(@Valid @RequestBody CallTaxiRequest callTaxiRequest) throws Exception {
         List<VehicleInfo> vehicleInfoList = vehicleInfoService.selectAll();
         if(vehicleInfoList.size() <= 0){
             return Results.failure("附近沒有空車！！");
@@ -101,14 +107,10 @@ public class CallTaxiController {
                 double distance2 = GeoUtils.getDistance(callTaxiRequest.getStartLatitude(), callTaxiRequest.getStartLongitude(), l2.getLatitude(), l2.getLongitude());
 
                 if (distance2 >  distance1){
-                    if(distance < distance2){
-                        distance = distance2;
-                    }
+                    distance = distance1;
                     return 1;
                 }
-                if(distance < distance1){
-                    distance = distance1;
-                }
+                distance = distance2;
                 return -1;
             }
         });
@@ -118,11 +120,13 @@ public class CallTaxiController {
         }
         Object[] objs = vehicleInfoList.toArray();
         VehicleInfo info = vehicleInfoList.get(0);
-
-        return Results.success();
+        dispatchCarUtil.AssignCar(info.getId(), snowflake.nextId());
+        //wait();
+        return Results.success("系統派車中！");
     }
 
 }
+
 
 //                let parameters = [ "Start_Address" : Start_Address , "Target_Address" : Target_Address , "Start_Latitude" : Start_Latitude , "Start_Longitude" : Start_Longitude , "Target_Latitude" : Target_Latitude , "Target_Longitude" : Target_Longitude , "Distance" : dou ] as [String : Any];
 //                print("parameters:******\(parameters)")

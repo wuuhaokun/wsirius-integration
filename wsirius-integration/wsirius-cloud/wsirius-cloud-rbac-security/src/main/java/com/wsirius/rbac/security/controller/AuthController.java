@@ -61,7 +61,7 @@ import java.util.Map;
             SecurityContextHolder.getContext()
                     .setAuthentication(authentication);
             String jwt = jwtUtil.createJWT(authentication,loginRequest.getRememberMe());
-            return Results.successWithData(new JwtResponse(jwt));
+            return Results.successWithData(new JwtResponse(jwt),"操作成功！");
         }
 
         @PostMapping("/logout")
