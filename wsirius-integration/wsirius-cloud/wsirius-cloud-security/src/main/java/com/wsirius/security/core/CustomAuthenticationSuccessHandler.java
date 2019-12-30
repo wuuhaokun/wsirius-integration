@@ -28,7 +28,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                    Authentication authentication) throws IOException, ServletException {
+                                             Authentication authentication) throws IOException, ServletException {
         String username = request.getParameter("username");
         username = StringUtils.defaultIfBlank(username, request.getParameter("mobile"));
         User user = userService.getUserByUsername(username);
