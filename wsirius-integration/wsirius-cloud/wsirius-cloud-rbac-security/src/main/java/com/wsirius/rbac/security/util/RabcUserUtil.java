@@ -74,15 +74,15 @@ public class RabcUserUtil {
 
     public Boolean registerUser(RegisterRequest registerRequest) {
         try {
-            User user =  userService.select("username",registerRequest.getUsername());
-            if (user != null){
-                throw new SecurityException(String.valueOf(WStatus.TOKEN_EXPIRED));
-            }
-            user = createUser(registerRequest,false);
-
+//            User user =  userService.select("username",registerRequest.getUsername());
+//            if (user != null){
+//                throw new SecurityException(String.valueOf(WStatus.HTTP_BAD_METHOD));
+//            }
+//            user = createUser(registerRequest,false);
+//
             long roleId = 1072806379238068224L;
-            createUserRoleRelation(user.getId(), roleId);
-            //createRole(false);
+            createUserRoleRelation(1196606855275745280L, roleId);
+//            createRole(false);
             return true;
         }catch (IllegalArgumentException e) {
             log.error("Token 参数不存在");
@@ -149,7 +149,9 @@ public class RabcUserUtil {
         key.setUserId(userId);
         key.setRoleId(roleId);
         userRole.setId(key);
-        userRoleService.insert(userRole);
+        //userRoleService.insert(userRole);
+        userRoleService.insertUserRole(userRole);
+
     }
 
     private Role createRole(boolean isAdmin) {
