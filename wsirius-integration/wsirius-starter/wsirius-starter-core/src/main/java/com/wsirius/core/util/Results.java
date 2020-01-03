@@ -78,7 +78,7 @@ public class Results {
     /**
      * 构造一个异常的API返回
      *
-     * @param <T> {@link BaseException} 的子类
+     * @param <T> {@link WBaseException} 的子类
      * @param t   异常
      * @return ApiResponse
      */
