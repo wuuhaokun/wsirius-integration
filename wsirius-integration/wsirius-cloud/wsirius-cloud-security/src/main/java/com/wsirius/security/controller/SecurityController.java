@@ -136,7 +136,6 @@ public class SecurityController {
     @ResponseBody
     public Result self() {
         CustomUserDetails details = DetailsHelper.getUserDetails();
-
         return Results.successWithData(details);
     }
 
