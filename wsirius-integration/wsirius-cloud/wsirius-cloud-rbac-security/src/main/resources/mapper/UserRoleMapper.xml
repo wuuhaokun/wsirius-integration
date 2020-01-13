@@ -21,10 +21,25 @@
 <!--        <id property="sId" column="s_id"/>-->
 <!--    </resultMap>-->
 
+<!--    <resultMap type="XX" >-->
+<!--        <id property="id" column="colid"/>-->
+
+<!--        <id property="name" column="colname"/>-->
+
+<!--        <collection property="list" javaType="ArrayList" column="{id = colid,name=colname}" select="getSubXXX"/>-->
+<!--    </resultMap>-->
+
+<!--    前為別名後為主查詢getXXX語句中欄位-->
+
+
     <resultMap id="userRoleMap" type="com.wsirius.rbac.security.domain.entity.UserRole">
-        <id property="id.user_id" column="user_id"/>
-        <id property="id.role_id" column="role_id"/>
+        <id property="id.userId" column="user_id"/>
+        <id property="id.roleId" column="role_id"/>
     </resultMap>
 
+    <insert id ="insertUserRole" >
+    INSERT  INTO sec_user_role (user_id, role_id)
+    VALUES (#{userId}, #{roleId})
+    </insert>
 
 </mapper>
