@@ -20,4 +20,8 @@ import com.wsirius.rbac.security.domain.entity.UserRole;
 public interface UserRoleService extends Service<UserRole> {
 
     //UserRole getUserByUsername(long userId);
+    //UserRole insert(UserRole userRole);
+
+    //UserRole insert(UserRole userRole);
+    int insertUserRole(UserRole userRole);
 }
