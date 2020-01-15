@@ -14,14 +14,17 @@ import com.wsirius.core.base.BaseService;
 public class UserRoleServiceImpl extends BaseService<UserRole> implements UserRoleService {
 //    @Autowired(required = false)
 //    private UserRoleMapper userRoleMapper;
+//
+    //@Override
+    public int insertUserRole(UserRole userRole) {
+        //return userRoleMapper.insertUserRole(userRole);
+        return 0;
+    }
 
 //    @Override
-//    public UserRole insert(UserRole userRole) {
+//    public UserRole insert(UserRole userRole){
 //        userRoleMapper.insert(userRole);
 //        return null;
 //    }
-//    @Override
-//    public UserRole getUserByUsername(long userId){
-//        return null;
-//    }
+
 }
