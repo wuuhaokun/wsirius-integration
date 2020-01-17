@@ -18,7 +18,7 @@ import javax.validation.constraints.NotBlank;
  * @modified: yangkai.shen
  */
 @Data
-public class DriverInfoRequest {
+public class  DriverInfoRequest {
 
     /**
      * 主键
