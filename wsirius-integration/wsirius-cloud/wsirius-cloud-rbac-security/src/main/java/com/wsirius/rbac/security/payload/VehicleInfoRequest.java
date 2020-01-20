@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
  * @modified: yangkai.shen
  */
 @Data
-public class VehicleInfoRequest {
+public class  VehicleInfoRequest {
 
     /**
      * 主键
