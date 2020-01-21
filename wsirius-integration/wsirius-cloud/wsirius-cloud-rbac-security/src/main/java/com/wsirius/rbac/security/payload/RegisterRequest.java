@@ -18,7 +18,7 @@ import javax.validation.constraints.NotBlank;
  * @modified: yangkai.shen
  */
 @Data
-public class RegisterRequest {
+public class  RegisterRequest {
 
     /**
      * 主键
