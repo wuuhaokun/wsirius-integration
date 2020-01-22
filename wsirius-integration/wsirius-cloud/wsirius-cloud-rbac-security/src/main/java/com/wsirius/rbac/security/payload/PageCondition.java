@@ -16,7 +16,7 @@ import lombok.Data;
  * @modified: yangkai.shen
  */
 @Data
-public class PageCondition {
+public class  PageCondition {
     /**
      * 当前页码
      */
