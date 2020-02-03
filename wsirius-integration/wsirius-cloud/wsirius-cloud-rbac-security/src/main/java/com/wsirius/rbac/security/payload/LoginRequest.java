@@ -18,7 +18,7 @@ import javax.validation.constraints.NotBlank;
  * @modified: yangkai.shen
  */
 @Data
-public class LoginRequest {
+public class  LoginRequest {
 
     /**
      * 用户名或邮箱或手机号
