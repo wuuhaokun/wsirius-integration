@@ -17,7 +17,7 @@ public interface Consts {
     /**
      * 启用
      */
-    Integer ENABLE = 1;
+    Integer ENABLE =  1;
     /**
      * 禁用
      */
