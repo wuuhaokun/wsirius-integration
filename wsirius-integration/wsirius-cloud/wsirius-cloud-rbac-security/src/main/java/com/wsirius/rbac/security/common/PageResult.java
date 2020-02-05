@@ -29,7 +29,7 @@ public class PageResult<T> implements Serializable {
     /**
      * 当前页数据
      */
-    private List<T> rows;
+    private List<T>  rows;
 
     /**
      * 总条数
