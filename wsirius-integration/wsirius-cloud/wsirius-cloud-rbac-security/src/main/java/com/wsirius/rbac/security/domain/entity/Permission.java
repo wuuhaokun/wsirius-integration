@@ -33,7 +33,7 @@ public class Permission {
     /**
      * 权限名
      */
-    private String name;
+    private  String name;
 
     /**
      * 类型为页面时，代表前端路由地址，类型为按钮时，代表后端接口地址
