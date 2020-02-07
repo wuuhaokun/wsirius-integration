@@ -33,7 +33,7 @@ public class Role {
     /**
      * 角色名
      */
-    private String name;
+    private  String name;
 
     /**
      * 描述
