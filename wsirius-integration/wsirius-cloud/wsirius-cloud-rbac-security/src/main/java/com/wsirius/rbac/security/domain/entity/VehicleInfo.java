@@ -33,7 +33,7 @@ public class VehicleInfo {
     /**
      * 角色名
      */
-    private Double latitude;
+    private  Double latitude;
 
     private Double longitude;
 
