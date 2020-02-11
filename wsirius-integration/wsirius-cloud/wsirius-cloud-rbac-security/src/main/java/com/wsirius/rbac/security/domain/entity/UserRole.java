@@ -28,5 +28,5 @@ public class UserRole {
      * 主键
      */
     @EmbeddedId
-    private UserRoleKey id;
+    private  UserRoleKey id;
 }
