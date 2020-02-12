@@ -39,7 +39,7 @@ public class User {
     /**
      * 密码
      */
-    private String password;
+    private  String password;
 
     /**
      * 昵称
