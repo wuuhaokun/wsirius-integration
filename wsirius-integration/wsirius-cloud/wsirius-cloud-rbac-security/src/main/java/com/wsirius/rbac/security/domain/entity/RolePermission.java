@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "sec_role_permission")
-public class RolePermission {
+public class  RolePermission {
     /**
      * 主键
      */
