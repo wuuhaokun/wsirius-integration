@@ -12,6 +12,6 @@ import com.wsirius.core.base.BaseController;
 @RestController
 public class UserController extends BaseController {
 
-
+//注解說明
 
 }
